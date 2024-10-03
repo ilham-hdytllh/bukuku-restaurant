@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "968070639396",
+    "project_id": "restaurant-bukuku",
+    "storage_bucket": "restaurant-bukuku.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968070639396:android:3459b9ae18bd4da4014db1",
+        "android_client_info": {
+          "package_name": "id.bukuku.restaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968070639396-q88sp2opi5q7pai1pgqct1il2fr8cmnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBftPG5tW4ZMSrfyfDLLvaQX9l8owz8iv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968070639396-q88sp2opi5q7pai1pgqct1il2fr8cmnt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "968070639396-t0cijs0fj0bj1nput54jqo1jjv12bmkd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "id.bukuku.restaurant"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

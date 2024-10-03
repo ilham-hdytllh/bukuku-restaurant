@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:restaurant_bukuku/features/create_order/controllers/create_order_controller.dart';
+import 'package:restaurant_bukuku/utils/constants/colors.dart';
+import 'package:restaurant_bukuku/utils/extension/capitalize.dart';
+
+class ChooseTableGroupDialog extends StatelessWidget {
+  const ChooseTableGroupDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final createOrderController = Get.put(CreateOrderController());
+    return Obx(
+      () => Scrollbar(
+        thumbVisibility: false,
+        trackVisibility: false,
+        thickness: 8,
+        interactive: true,
+        radius: const Radius.circular(5),
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: createOrderController.allGroupTableInit.length,
+          itemBuilder: (context, index) {
+            return Obx(
+              () => RadioListTile(
+                contentPadding: const EdgeInsets.only(right: 5, left: 5),
+                title: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      createOrderController.allGroupTableInit[index].groupName
+                          .capitalizeAll(),
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                  ],
+                ),
+                value: createOrderController.allGroupTableInit[index].groupID,
+                groupValue: createOrderController.selectedTableGroupID.value,
+                activeColor: TColors.primary,
+                controlAffinity: ListTileControlAffinity.trailing,
+                onChanged: (value) => createOrderController.selectedGroupTable(
+                    createOrderController.allGroupTableInit[index].groupID,
+                    createOrderController.allGroupTableInit[index].groupName),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
