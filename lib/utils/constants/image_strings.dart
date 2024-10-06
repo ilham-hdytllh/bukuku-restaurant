@@ -3,10 +3,8 @@
 /// This class contains all the App Images in String formats.
 class TImages {
   // -- App Logos
-  static const String darkAppLogo =
-      "assets/logos/innotia_pos_logo_dark_no_bg.png";
-  static const String lightAppLogo =
-      "assets/logos/innotia_pos_logo_light_no_bg.png";
+  static const String darkAppLogo = "assets/logos/pos_logo_dark_no_bg.png";
+  static const String lightAppLogo = "assets/logos/pos_logo_light_no_bg.png";
 
   // -- OnBoarding Texts
   static const String onBoardingImage1 =

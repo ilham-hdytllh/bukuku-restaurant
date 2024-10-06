@@ -83,7 +83,7 @@ class SidebarController extends GetxController {
         appbarController.appBarTitle.value = "Branch";
 
       case 7:
-        appbarController.appBarTitle.value = "Report";
+        appbarController.appBarTitle.value = "Sales Report";
 
       case 8:
         appbarController.appBarTitle.value = "Customer";

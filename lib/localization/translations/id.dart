@@ -7,7 +7,7 @@ Map<String, String> id = {
   "previous": "Kembali",
   "submit": "Kirim",
   "send": "Kirim",
-  "appName": "Innotia POS",
+  "appName": "BUKUKU POS",
   "appVersion": "Versi 1.0.0",
   "tContinue": "Lanjut",
   "bahasaID": "Bahasa (ID)",

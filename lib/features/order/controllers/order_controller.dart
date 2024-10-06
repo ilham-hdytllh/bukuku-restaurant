@@ -51,9 +51,6 @@ class OrderController extends GetxController {
     } catch (e) {
       // stop loading
       isLoadingGet.value = false;
-      // error message
-      CustomSnackbar.errorSnackbar(
-          title: "Error get data order", message: "Please try again later");
     } finally {
       // stop loading
       isLoadingGet.value = false;

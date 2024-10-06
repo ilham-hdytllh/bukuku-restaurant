@@ -215,6 +215,8 @@ class TableController extends GetxController {
     selectedComponent.value = "component1";
 
     tableController.refresh();
+    createOrderController.fetchSpecificTableFromBranchRecord();
+    createOrderController.fetchSpecificTableGroupFromBranchRecord();
 
     Get.back();
   }
@@ -250,10 +252,6 @@ class TableController extends GetxController {
     } catch (e) {
       // stop loading
       isLoadingGet.value = false;
-      // error message
-      CustomSnackbar.errorSnackbar(
-          title: "Error get data table group",
-          message: "Please try again later");
     } finally {
       // stop loading
       isLoadingGet.value = false;
@@ -289,8 +287,6 @@ class TableController extends GetxController {
       // stop loading
       isLoadingGet.value = false;
       // error message
-      CustomSnackbar.errorSnackbar(
-          title: "Error get data table", message: "Please try again later");
     } finally {
       // stop loading
       isLoadingGet.value = false;
@@ -333,8 +329,8 @@ class TableController extends GetxController {
       active.value = false;
       groupTableNameController.clear();
 
-      // await createOrderController.fetchSpesificTableGroupfromBranchRecord();
-      // await createOrderController.fetchSpesificTablefromBranchRecord();
+      createOrderController.fetchSpecificTableFromBranchRecord();
+      createOrderController.fetchSpecificTableGroupFromBranchRecord();
       createOrderController.refresh();
 
       // close dialog
@@ -399,8 +395,8 @@ class TableController extends GetxController {
       editLayout.value = false;
       deleteTableOrObject.clear();
 
-      // await createOrderController.fetchSpesificTableGroupfromBranchRecord();
-      // await createOrderController.fetchSpesificTablefromBranchRecord();
+      createOrderController.fetchSpecificTableFromBranchRecord();
+      createOrderController.fetchSpecificTableGroupFromBranchRecord();
       createOrderController.refresh();
 
       await fetchSpesificTableLayoutfromBranchRecord();
@@ -455,6 +451,8 @@ class TableController extends GetxController {
       // close dialog
       Get.back();
 
+      createOrderController.fetchSpecificTableFromBranchRecord();
+      createOrderController.fetchSpecificTableGroupFromBranchRecord();
       await fetchSpesificTableGroupfromBranchRecord();
 
       // show success dialog
@@ -490,6 +488,8 @@ class TableController extends GetxController {
       // Save status group table data in the firebase database
       await tableGroupRepository.updateStatusGroupTable(groupTableID, status);
 
+      createOrderController.fetchSpecificTableFromBranchRecord();
+      createOrderController.fetchSpecificTableGroupFromBranchRecord();
       await fetchSpesificTableGroupfromBranchRecord();
 
       // stop loading
@@ -520,6 +520,8 @@ class TableController extends GetxController {
       // delete group table data in the firebase database
       await tableGroupRepository.deleteGroupTableRecord(groupTableID);
 
+      createOrderController.fetchSpecificTableFromBranchRecord();
+      createOrderController.fetchSpecificTableGroupFromBranchRecord();
       await fetchSpesificTableGroupfromBranchRecord();
 
       // stop loading

@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:restaurant_bukuku/data/repositories/authentication/authentication_repository.dart';
 import 'package:restaurant_bukuku/data/repositories/firebase_storage/image/firebase_storage_image_repository.dart';
 import 'package:restaurant_bukuku/data/repositories/menu/menu_repository.dart';
+import 'package:restaurant_bukuku/features/create_order/controllers/create_order_controller.dart';
 import 'package:restaurant_bukuku/features/menu_and_category/models/menu_model.dart';
 import 'package:restaurant_bukuku/utils/helpers/network_manager.dart';
 import 'package:restaurant_bukuku/utils/snackbar/snackbar.dart';
@@ -151,6 +152,7 @@ class MenuProductController extends GetxController {
 
   // delete menu
   Future<void> deleteMenuRecord(String menuID) async {
+    final createOrderController = Get.put(CreateOrderController());
     try {
       // show loading
       isLoadingDelete.value = true;
@@ -168,10 +170,22 @@ class MenuProductController extends GetxController {
       // delete category data in the firebase database
       await menuRepository.deleteMenuRecord(menuID);
 
+      description.clear();
+      price.clear();
+      menuName.clear();
+      menuCategory.clear();
+      description.clear();
+      addons.clear();
+      receipe.clear();
+      allowFlexiblePrice.value = false;
+      imageMenu.value = null;
+      imageMenuForUpload.value = null;
+
       // back to category screen
       Get.back();
 
       await fetchSpesificMenufromBranchRecord();
+      createOrderController.fetchSpecificMenuFromBranchRecord();
 
       // stop loading
       isLoadingDelete.value = false;
@@ -186,6 +200,8 @@ class MenuProductController extends GetxController {
 
   // save menu in firebase
   Future<void> saveMenuRecord() async {
+    final createOrderController = Get.put(CreateOrderController());
+
     final localStorage = GetStorage();
     // set value from local to variable
     String branchIDActive = localStorage.read('branchIDActive') ?? "";
@@ -247,11 +263,13 @@ class MenuProductController extends GetxController {
       allowFlexiblePrice.value = false;
       imageMenu.value = null;
       imageMenuForUpload.value = null;
+      urlMenu = '';
 
       // back to menu screen
       Get.back(id: 2);
 
       await fetchSpesificMenufromBranchRecord();
+      createOrderController.fetchSpecificMenuFromBranchRecord();
 
       // show success dialog
       CustomSnackbar.successSnackbar(
@@ -270,6 +288,7 @@ class MenuProductController extends GetxController {
 
 // update menu in firebase
   Future<void> updateMenuRecord(String menuID) async {
+    final createOrderController = Get.put(CreateOrderController());
     final localStorage = GetStorage();
     // set value from local to variable
     String branchIDActive = localStorage.read('branchIDActive') ?? "";
@@ -296,6 +315,8 @@ class MenuProductController extends GetxController {
       if (imageMenuForUpload.value != null) {
         urlMenu = await firebaseStorageImageRepository.uploadImage(
             "Menus/", imageMenuForUpload.value!);
+      } else {
+        urlMenu = selectedImage.value;
       }
       // put data in model
       final updateMenuRecord = MenuModel(
@@ -319,16 +340,22 @@ class MenuProductController extends GetxController {
 
       description.clear();
       price.clear();
+      menuName.clear();
       menuCategory.clear();
       description.clear();
       addons.clear();
       receipe.clear();
       allowFlexiblePrice.value = false;
+      imageMenu.value = null;
+      imageMenuForUpload.value = null;
+      urlMenu = '';
 
       // back to branch screen
       Get.back(id: 2);
 
       await fetchSpesificMenufromBranchRecord();
+
+      createOrderController.fetchSpecificMenuFromBranchRecord();
 
       // show success dialog
       CustomSnackbar.successSnackbar(

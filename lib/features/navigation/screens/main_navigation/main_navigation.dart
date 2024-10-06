@@ -11,6 +11,7 @@ import 'package:restaurant_bukuku/features/navigation/screens/app_bar/custom_app
 import 'package:restaurant_bukuku/features/navigation/screens/side_bar/sidebar.dart';
 import 'package:restaurant_bukuku/features/order/screens/list_order/list_order.dart';
 import 'package:restaurant_bukuku/features/promo/screens/promo/promo_screens.dart';
+import 'package:restaurant_bukuku/features/report/screens/sales_report.dart';
 import 'package:restaurant_bukuku/features/table/screens/table_screen.dart';
 import 'package:restaurant_bukuku/utils/divider/vertical_divider.dart';
 
@@ -47,7 +48,7 @@ class MainNavigation extends StatelessWidget {
                           _wrapWithNavigator(const EmployeScreen(), 4),
                           _wrapWithNavigator(const InventoryScreen(), 5),
                           _wrapWithNavigator(const BranchScreen(), 6),
-                          const SizedBox(),
+                          _wrapWithNavigator(const SalesReportScreen(), 7),
                           _wrapWithNavigator(const CustomerScreen(), 8),
                           _wrapWithNavigator(const TableScreen(), 9),
                         ],

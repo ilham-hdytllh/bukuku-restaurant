@@ -58,7 +58,7 @@ class VerifyEmailScreen extends StatelessWidget {
                     height: TSizes.spaceBtwItems,
                   ),
                   Text(
-                    "support@innotia.com",
+                    "support@bukuku.com",
                     style: Theme.of(context).textTheme.bodyMedium,
                     textAlign: TextAlign.center,
                   ),

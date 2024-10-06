@@ -8,6 +8,7 @@ import 'package:restaurant_bukuku/data/repositories/table/group_table.dart';
 import 'package:restaurant_bukuku/data/repositories/table/layout_table.dart';
 import 'package:restaurant_bukuku/features/create_order/controllers/cart_controller.dart';
 import 'package:restaurant_bukuku/features/menu_and_category/models/menu_model.dart';
+import 'package:restaurant_bukuku/features/order/controllers/order_controller.dart';
 import 'package:restaurant_bukuku/features/order/models/order_model.dart';
 import 'package:restaurant_bukuku/features/table/models/group_table_model.dart';
 import 'package:restaurant_bukuku/features/table/models/table_model.dart';
@@ -149,6 +150,9 @@ class CreateOrderController extends GetxController {
       pax.value = 1;
       selectedSalesType.value = "Dine In";
       tableSelected.clear();
+
+      final orderController = Get.put(OrderController());
+      orderController.fetchAllOrderRecord();
 
       // back to create order screen
       Get.back(id: 0);
