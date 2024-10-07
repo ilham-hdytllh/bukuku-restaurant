@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:restaurant_bukuku/data/repositories/order/order_repository.dart';
 import 'package:restaurant_bukuku/features/order/models/order_model.dart';
-import 'package:restaurant_bukuku/utils/snackbar/snackbar.dart';
 
 class OrderController extends GetxController {
   static OrderController get instance => Get.find();

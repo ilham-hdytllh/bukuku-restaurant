@@ -10,6 +10,7 @@ import 'package:restaurant_bukuku/features/create_order/controllers/cart_control
 import 'package:restaurant_bukuku/features/menu_and_category/models/menu_model.dart';
 import 'package:restaurant_bukuku/features/order/controllers/order_controller.dart';
 import 'package:restaurant_bukuku/features/order/models/order_model.dart';
+import 'package:restaurant_bukuku/features/report/controllers/sales_report.dart';
 import 'package:restaurant_bukuku/features/table/models/group_table_model.dart';
 import 'package:restaurant_bukuku/features/table/models/table_model.dart';
 import 'package:restaurant_bukuku/utils/helpers/network_manager.dart';
@@ -90,6 +91,7 @@ class CreateOrderController extends GetxController {
   // save order
   Future<void> saveOrderToFirestore() async {
     final cartController = Get.put(CartController());
+    final salesReportController = Get.put(SalesReportController());
     String branchIDActive = localStorage.read('branchIDActive') ?? "";
     String employeNameActive = localStorage.read('employeNameActive') ?? "";
     // String employeIDActive = localStorage.read('employeIDActive') ?? "";
@@ -143,6 +145,8 @@ class CreateOrderController extends GetxController {
       final orderRepository = Get.put(OrderRepository());
       // Save order data in the firebase database
       await orderRepository.saveOrder(newOrder);
+
+      salesReportController.fetchAllOrderRecord();
 
       cartController.cartItem.clear();
       customerName.clear();

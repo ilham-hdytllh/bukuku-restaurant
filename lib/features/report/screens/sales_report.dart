@@ -34,7 +34,16 @@ class SalesReportScreen extends StatelessWidget {
                 children: [
                   // search sku
                   SizedBox(
-                    width: THelperFunctions.screenWidth() * 0.4,
+                    height: TSizes.inputFieldHeight,
+                    child: ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Iconsax.export_3_copy,
+                        size: 18,
+                        color: TColors.white,
+                      ),
+                      label: Text("Export"),
+                    ),
                   ),
                 ],
               ),
@@ -43,108 +52,111 @@ class SalesReportScreen extends StatelessWidget {
               ),
               SizedBox(
                 width: double.infinity,
-                child: DataTable(
-                  dividerThickness: 0.5,
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: TColors.grey),
-                      color: TColors.white,
-                      borderRadius: const BorderRadius.all(Radius.circular(5))),
-                  headingTextStyle: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: TColors.black),
-                  dataTextStyle:
-                      Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: TColors.black,
-                            fontWeight: FontWeight.w400,
+                child: Obx(
+                  () => DataTable(
+                    dividerThickness: 0.5,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1, color: TColors.grey),
+                        color: TColors.white,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5))),
+                    headingTextStyle: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: TColors.black),
+                    dataTextStyle:
+                        Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: TColors.black,
+                              fontWeight: FontWeight.w400,
+                            ),
+                    headingRowHeight: 50,
+                    dataRowMaxHeight: 50,
+                    dataRowMinHeight: 50,
+                    columnSpacing: 5,
+                    columns: [
+                      const DataColumn(
+                        label: Text(
+                          'No',
+                        ),
+                      ),
+                      const DataColumn(
+                        label: Text(
+                          'Order ID',
+                        ),
+                      ),
+                      const DataColumn(
+                        label: Text(
+                          'Tanggal',
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          'Customer Name',
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          'Gross Amount',
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          'Sales Type',
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          'Status',
+                        ),
+                      ),
+                    ],
+                    rows: salesReportController.orderInitData.map((element) {
+                      return DataRow(cells: [
+                        DataCell(
+                          Text(
+                            (salesReportController.orderInitData
+                                        .indexOf(element) +
+                                    1)
+                                .toString(),
                           ),
-                  headingRowHeight: 50,
-                  dataRowMaxHeight: 50,
-                  dataRowMinHeight: 50,
-                  columnSpacing: 5,
-                  columns: [
-                    const DataColumn(
-                      label: Text(
-                        'No',
-                      ),
-                    ),
-                    const DataColumn(
-                      label: Text(
-                        'Order ID',
-                      ),
-                    ),
-                    const DataColumn(
-                      label: Text(
-                        'Tanggal',
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Customer Name',
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Gross Amount',
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Sales Type',
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Status',
-                      ),
-                    ),
-                  ],
-                  rows: salesReportController.orderInitData.map((element) {
-                    return DataRow(cells: [
-                      DataCell(
-                        Text(
-                          (salesReportController.orderInitData
-                                      .indexOf(element) +
-                                  1)
-                              .toString(),
                         ),
-                      ),
-                      DataCell(
-                        Text(
-                          element.orderID,
+                        DataCell(
+                          Text(
+                            element.orderID,
+                          ),
                         ),
-                      ),
-                      DataCell(
-                        Text(
-                          element.orderTime,
+                        DataCell(
+                          Text(
+                            element.orderTime,
+                          ),
                         ),
-                      ),
-                      DataCell(
-                        Text(
-                          element.customerName,
+                        DataCell(
+                          Text(
+                            element.customerName,
+                          ),
                         ),
-                      ),
-                      DataCell(
-                        Text(
-                          CurrencyFormat.convertToIdr(element.grossAmount, 0),
+                        DataCell(
+                          Text(
+                            CurrencyFormat.convertToIdr(element.grossAmount, 0),
+                          ),
                         ),
-                      ),
-                      DataCell(
-                        Text(
-                          element.salesType,
+                        DataCell(
+                          Text(
+                            element.salesType,
+                          ),
                         ),
-                      ),
-                      DataCell(
-                        Text(
-                          element.paymentStatus.capitalizeSingle(),
-                          style: TextStyle(
-                              color: element.paymentStatus == 'paid'
-                                  ? Colors.green
-                                  : TColors.textPrimary),
+                        DataCell(
+                          Text(
+                            element.paymentStatus.capitalizeSingle(),
+                            style: TextStyle(
+                                color: element.paymentStatus == 'paid'
+                                    ? Colors.green
+                                    : TColors.textPrimary),
+                          ),
                         ),
-                      ),
-                    ]);
-                  }).toList(),
+                      ]);
+                    }).toList(),
+                  ),
                 ),
               ),
               Obx(

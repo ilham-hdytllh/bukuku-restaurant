@@ -29,7 +29,6 @@ class SalesReportController extends GetxController {
       // asign order
       orderInitData.assignAll(order);
       orderFilteredData.assignAll(order);
-      print(orderInitData);
     } catch (e) {
       // stop loading
       isLoadingGet.value = false;
